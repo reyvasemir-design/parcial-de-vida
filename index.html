@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(Título de la entrada) · SOCCEUS</title>
+<style>
+  :root{
+    --azul: #1A2E44;
+    --menta: #7FB5A3;
+    --coral: #E8809A;
+    --papel: #F4F1EA;
+    --grafito: #3A3A3A;
+  }
+
+  * { box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background-color: var(--papel);
+    color: var(--grafito);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.7;
+  }
+
+  a{ text-decoration: none; color: inherit; }
+
+  /* ===== BARRA DE PROGRESO DE LECTURA ===== */
+  .progress-bar{
+    position: fixed;
+    top: 0; left: 0;
+    height: 4px;
+    width: 0%;
+    background-color: var(--coral);
+    z-index: 999;
+    transition: width 0.1s ease-out;
+  }
+
+  /* ===== NAV ===== */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 100;
+    background-color: var(--azul);
+    padding: 16px 6vw;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  nav .logo{
+    color: var(--papel);
+    font-size: 17px;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  nav .logo span{ color: var(--menta); }
+  nav a.volver{
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--papel);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  nav a.volver:hover{
+    opacity: 1;
+    transform: translateX(-4px);
+  }
+
+  /* ===== ANIMACIONES DE ENTRADA ===== */
+  @keyframes fadeUp{
+    from{ opacity: 0; transform: translateY(24px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+  .fade-up{
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .fade-up.delay-1{ animation-delay: 0.15s; }
+  .fade-up.delay-2{ animation-delay: 0.3s; }
+  .fade-up.delay-3{ animation-delay: 0.45s; }
+
+  /* Animación al hacer scroll (se activa vía JS con clase .visible) */
+  .reveal{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== HEADER DE LA ENTRADA ===== */
+  header.entry-hero{
+    background: linear-gradient(160deg, var(--azul) 0%, #24405c 100%);
+    color: var(--papel);
+    padding: 80px 6vw 70px 6vw;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header.entry-hero::before{
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background-color: rgba(127,181,163,0.15);
+  }
+  header.entry-hero::after{
+    content: "";
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background-color: rgba(232,128,154,0.10);
+  }
+
+  /* Este badge cambia según la sección: Diván Abierto / Clínica de Ideas / Parcial de Vida */
+  .section-badge{
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--azul);
+    background-color: var(--menta);
+    padding: 8px 20px;
+    border-radius: 30px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  header.entry-hero h1{
+    font-size: clamp(28px, 4.5vw, 46px);
+    line-height: 1.25;
+    max-width: 780px;
+    margin: 0 auto 20px auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .entry-meta{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: var(--papel);
+    opacity: 0.75;
+    position: relative;
+    z-index: 2;
+  }
+  .entry-meta span{ color: var(--coral); font-weight: bold; }
+
+  /* ===== CONTENIDO ===== */
+  main{
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 70px 6vw 40px 6vw;
+  }
+
+  .lead{
+    font-size: 19px;
+    color: var(--azul);
+    font-style: italic;
+    line-height: 1.65;
+    border-left: 4px solid var(--coral);
+    padding-left: 22px;
+    margin-bottom: 46px;
+  }
+
+  main h2{
+    color: var(--azul);
+    font-size: 24px;
+    margin: 46px 0 18px 0;
+  }
+
+  main p{
+    font-size: 16.5px;
+    color: var(--grafito);
+    margin-bottom: 22px;
+  }
+
+  main blockquote{
+    background-color: #FFFFFF;
+    border-left: 4px solid var(--menta);
+    padding: 20px 26px;
+    border-radius: 0 10px 10px 0;
+    font-style: italic;
+    color: var(--azul);
+    font-size: 16.5px;
+    margin: 32px 0;
+    box-shadow: 0 6px 18px rgba(26,46,68,0.06);
+  }
+
+  /* ===== FIRMA DEL AUTOR ===== */
+  .author-box{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 56px 0 20px 0;
+    box-shadow: 0 8px 24px rgba(26,46,68,0.08);
+  }
+  .author-avatar{
+    flex: 0 0 56px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background-color: var(--azul);
+    color: var(--menta);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .author-info p{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .author-info .author-name{
+    color: var(--azul);
+    font-weight: bold;
+    font-size: 14.5px;
+  }
+  .author-info .author-role{
+    color: var(--grafito);
+    font-size: 12.5px;
+    opacity: 0.7;
+  }
+
+  /* ===== VOLVER AL DIARIO ===== */
+  .back-cta{
+    text-align: center;
+    padding: 50px 6vw 90px 6vw;
+  }
+  .back-cta a{
+    display: inline-block;
+    background-color: var(--coral);
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 14px 32px;
+    border-radius: 30px;
+    letter-spacing: 0.3px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .back-cta a:hover{
+    background-color: #d76c86;
+    transform: translateY(-2px);
+  }
+
+  footer{
+    background-color: var(--azul);
+    color: var(--papel);
+    text-align: center;
+    padding: 34px 6vw;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  footer p{
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 640px){
+    .author-box{ flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="logo">SOCCEUS <span>· El Diario</span></div>
+  <a href="soccei_diario_conversatorios.html#diario" class="volver">← Volver al Diario</a>
+</nav>
+
+<!--
+  ================================================================
+  CÓMO REUSAR ESTA PLANTILLA PARA CADA SECCIÓN:
+
+  1) Cambiá el texto de .section-badge más abajo por:
+     "Diván Abierto"   ó   "Clínica de Ideas"   ó   "Parcial de Vida"
+
+  2) Reemplazá el título (h1), la fecha/autor y el cuerpo del texto.
+
+  3) El resto del diseño (colores, animaciones, estructura) 
+     funciona igual para las tres secciones.
+  ================================================================
+-->
+
+<header class="entry-hero">
+  <span class="section-badge fade-up">Parcial de Vida</span>
+  <h1 class="fade-up delay-1">(Título de la entrada)</h1>
+  <p class="entry-meta fade-up delay-2">
+    <span>(Fecha)</span> · Por (Nombre del/de la autor/a) · (X min de lectura)
+  </p>
+</header>
+
+<main>
+  <p class="lead reveal">
+    (Bajada o resumen breve que enganche al lector desde el primer párrafo. 
+    Una o dos frases que resuman la idea central de la entrada.)
+  </p>
+
+  <p class="reveal">
+    (Acá comienza el cuerpo del texto. Podés escribir libremente sobre la experiencia, 
+    reflexión o historia que quieras compartir. Este espacio está pensado para una lectura 
+    cómoda, con tipografía clara y buen interlineado.)
+  </p>
+
+  <p class="reveal">
+    (Segundo párrafo. Podés agregar tantos como necesites, simplemente copiando esta 
+    etiqueta &lt;p class="reveal"&gt;...&lt;/p&gt; las veces que quieras.)
+  </p>
+
+  <h2 class="reveal">(Subtítulo opcional)</h2>
+  <p class="reveal">
+    (Podés dividir la entrada en secciones usando subtítulos como este, 
+    para organizar ideas más extensas.)
+  </p>
+
+  <blockquote class="reveal">
+    "(Acá podés destacar una frase importante, una cita textual o una idea 
+    que quieras resaltar del resto del texto.)"
+  </blockquote>
+
+  <p class="reveal">
+    (Párrafo de cierre. Podés terminar con una reflexión final, una pregunta 
+    abierta para el lector, o una invitación a comentar/compartir su propia experiencia.)
+  </p>
+
+  <div class="author-box reveal">
+    <div class="author-avatar">(IN)</div>
+    <div class="author-info">
+      <p class="author-name">(Nombre y Apellido)</p>
+      <p class="author-role">(Rol / Año de la carrera / Sección de SOCCEUS)</p>
+    </div>
+  </div>
+</main>
+
+<div class="back-cta reveal">
+  <a href="soccei_diario_conversatorios.html#diario">Ver más entradas del Diario</a>
+</div>
+
+<footer>
+  <p>SOCCEUS — Sección Psicología · Universidad Católica de Córdoba</p>
+</footer>
+
+<script>
+  // Barra de progreso de lectura
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + '%';
+  });
+
+  // Animación al hacer scroll (fade-up progresivo para cada bloque .reveal)
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
