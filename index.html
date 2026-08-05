@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>(Título de la entrada) · SOCCEUS</title>
+<title>Pero queres ser psicologo · SOCCEUS</title>
 <style>
   :root{
     --azul: #1A2E44;
@@ -52,11 +52,21 @@
   }
   nav .logo{
     color: var(--papel);
-    font-size: 17px;
-    letter-spacing: 1px;
+    font-size: 15.5px;
+    letter-spacing: 0.5px;
     font-weight: bold;
+    line-height: 1.3;
   }
-  nav .logo span{ color: var(--menta); }
+  nav .logo span{
+    display: block;
+    color: var(--menta);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 2px;
+  }
   nav a.volver{
     font-family: Arial, Helvetica, sans-serif;
     color: var(--papel);
@@ -67,6 +77,7 @@
     align-items: center;
     gap: 6px;
     transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap;
   }
   nav a.volver:hover{
     opacity: 1;
@@ -123,7 +134,6 @@
     background-color: rgba(232,128,154,0.10);
   }
 
-  /* Este badge cambia según la sección: Diván Abierto / Clínica de Ideas / Parcial de Vida */
   .section-badge{
     display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
@@ -177,16 +187,11 @@
     margin-bottom: 46px;
   }
 
-  main h2{
-    color: var(--azul);
-    font-size: 24px;
-    margin: 46px 0 18px 0;
-  }
-
   main p{
     font-size: 16.5px;
     color: var(--grafito);
     margin-bottom: 22px;
+    white-space: pre-line;
   }
 
   main blockquote{
@@ -284,72 +289,42 @@
 <div class="progress-bar" id="progressBar"></div>
 
 <nav>
-  <div class="logo">SOCCEUS <span>· El Diario</span></div>
+  <div class="logo">SOCCEUS · Sección Psico<span>Publicable 1º Edición</span></div>
   <a href="soccei_diario_conversatorios.html#diario" class="volver">← Volver al Diario</a>
 </nav>
 
-<!--
-  ================================================================
-  CÓMO REUSAR ESTA PLANTILLA PARA CADA SECCIÓN:
-
-  1) Cambiá el texto de .section-badge más abajo por:
-     "Diván Abierto"   ó   "Clínica de Ideas"   ó   "Parcial de Vida"
-
-  2) Reemplazá el título (h1), la fecha/autor y el cuerpo del texto.
-
-  3) El resto del diseño (colores, animaciones, estructura) 
-     funciona igual para las tres secciones.
-  ================================================================
--->
-
 <header class="entry-hero">
-  <span class="section-badge fade-up">Parcial de Vida</span>
-  <h1 class="fade-up delay-1">(Título de la entrada)</h1>
+  <span class="section-badge fade-up">Diván Abierto</span>
+  <h1 class="fade-up delay-1">Las PPS</h1>
   <p class="entry-meta fade-up delay-2">
-    <span>(Fecha)</span> · Por (Nombre del/de la autor/a) · (X min de lectura)
+    <span>1º Edición</span> · Por Lara Bischoff Liendo · 2216280
   </p>
 </header>
 
 <main>
-  <p class="lead reveal">
-    (Bajada o resumen breve que enganche al lector desde el primer párrafo. 
-    Una o dos frases que resuman la idea central de la entrada.)
-  </p>
 
   <p class="reveal">
-    (Acá comienza el cuerpo del texto. Podés escribir libremente sobre la experiencia, 
-    reflexión o historia que quieras compartir. Este espacio está pensado para una lectura 
-    cómoda, con tipografía clara y buen interlineado.)
-  </p>
+Siempre fui una persona estructurada. El desayuno se sirve a las ocho, estudio cinco horas al día y entreno dos… Sé qué comer de merienda y a qué hora me voy a la cama. La rutina perfectamente equilibrada y premeditada. Cada cosa tiene que estar en su lugar y tengo que saber dónde encontrarlas. Todo va a la perfección y yo siempre estoy un paso adelante.
+        	Mi vida siempre funcionó de esa manera… sea porque interioricé cómo hacerlo de mis padres en la niñez…quizá porque siempre me dio paz mental…o tal vez, porque era la única forma que veía de sobrevivir a la automatización de la vida diaria. Sin embargo, el proceso de postulación de las Prácticas Profesionales Supervisadas (PPS) de quinto año, desafió todos mis esquemas mentales. 
+        	Me presenté para el contexto Clínico, guiada por la supuesta certeza de que era ese el único contexto que atraía mi atención y dentro del cual podía desempeñarme con todos los  conocimientos teóricos adquiridos durante los años de la carrera (y de mi vida en general). A lo largo de toda la carrera, estudié con vocación y convicción, me formé extracurricularmente y me sumergí en la casuística de la clínica porque ese era MI LUGAR. No existía otra posibilidad. Era inconcebible la idea de que yo quedara en otro contexto para realizar mis prácticas de último año. De cierta manera, como estudiante, ya había formado mi Identidad profesional sin siquiera haber puesto un pie en la experiencia laboral.
+Aun así, en el día de las entrevistas para fundamentar la elección, nos informaron sobre la marcha que íbamos a ser entrevistados por nuestros primeros dos (de tres) contextos de preferencia. Por supuesto que yo había preparado mi guión y las palabras justas que iba a decir para ser elegida para el contexto clínico. Pero, ¿y para el contexto Jurídico-Forense? No tenía absolutamente nada. Estaba en blanco. A mis ojos, era un escenario desastroso. ¿Cómo no había pensado en esto? Tendría que haberlo previsto.
 
-  <p class="reveal">
-    (Segundo párrafo. Podés agregar tantos como necesites, simplemente copiando esta 
-    etiqueta &lt;p class="reveal"&gt;...&lt;/p&gt; las veces que quieras.)
-  </p>
-
-  <h2 class="reveal">(Subtítulo opcional)</h2>
-  <p class="reveal">
-    (Podés dividir la entrada en secciones usando subtítulos como este, 
-    para organizar ideas más extensas.)
-  </p>
+  <p class="reveal">Yo creo que fue una fuerza que emergió de algún lado de mi ser la que me impulsó a entrar sin haber preparado nada. Recuerdo que me dije palabras positivas para calmar mi discurso mental catastrofizante: “Todo va a estar bien. Todo va a estar bien. Todo va a estar bien y lo vas a hacer bien”. Comencé a hablar de aspectos de la vida y el mundo a los que ni yo sabía que les prestaba atención hasta ese momento; me expresé de manera sincera sobre los pensamientos y miedos que acarreaba en relación al contexto; y sobre todo, me sentí tranquila. Una tranquilidad que nunca antes había sentido. La tranquilidad de no tener que calcular todo, planificar de antemano y pensar en cada mínima cosa que pudiera ocurrir. Había algo del fluir y dejar que la vida me sorprendiera que me cautivó. 
+Mirando hacia atrás, no recuerdo con exactitud cómo pasó pero, casi por revelación divina, experimenté la seguridad y el deseo intenso de entrar en ese contexto. Y quedé.
+Hay algo lindo en lo impredecible. Algo sucede dentro de nosotros cuando lo inesperado acontece y nos desafía a adaptarnos…a inspirarnos en lo impensable y conocernos en lo novedoso.
 
   <blockquote class="reveal">
-    "(Acá podés destacar una frase importante, una cita textual o una idea 
-    que quieras resaltar del resto del texto.)"
+    "En fin, hoy lo entiendo. Todos somos incoherentes en algún momento de nuestra vida…¿Por qué aferrarnos a una imagen de nosotros mismos si vivimos en constante transformación?"
   </blockquote>
 
-  <p class="reveal">
-    (Párrafo de cierre. Podés terminar con una reflexión final, una pregunta 
-    abierta para el lector, o una invitación a comentar/compartir su propia experiencia.)
-  </p>
-
   <div class="author-box reveal">
-    <div class="author-avatar">(IN)</div>
+    <div class="author-avatar">JKL</div>
     <div class="author-info">
-      <p class="author-name">(Nombre y Apellido)</p>
-      <p class="author-role">(Rol / Año de la carrera / Sección de SOCCEUS)</p>
+      <p class="author-name">Lara Bischoff Liendo</p>
+      <p class="author-role">Alumna / 5º Año / Psicología</p>
     </div>
   </div>
+
 </main>
 
 <div class="back-cta reveal">
